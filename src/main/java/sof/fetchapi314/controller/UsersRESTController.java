@@ -1,13 +1,11 @@
 package sof.fetchapi314.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.ui.Model;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import sof.fetchapi314.entity.Role;
 import sof.fetchapi314.entity.User;
@@ -19,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class UsersRESTController {
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final UserRepository userRepo;
     private final UserService userService;
 
@@ -34,11 +33,15 @@ public class UsersRESTController {
 
     @PostMapping("admin/users/save")
     public ResponseEntity<User> save(@RequestBody User user){
+        String password=passwordEncoder.encode(user.getPassword());
+        user.setPassword(password);
         return ResponseEntity.ok(userRepo.save(user));
     }
 
     @PutMapping("admin/users/save")
     public ResponseEntity<User> update(@RequestBody User u){
+        String password=passwordEncoder.encode(u.getPassword());
+        u.setPassword(password);
         return ResponseEntity.ok(userRepo.save(u));
     }
 

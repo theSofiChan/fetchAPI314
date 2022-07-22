@@ -54,21 +54,21 @@ function renderPage() {
                             let password = document.querySelector('#password1');
                             let country = document.querySelector('#country1');
                             let roles = document.querySelector('#roles1');
-                            let role;
-                            if (roles.value === "1") {
-                                role = [{
-                                    id: 1,
-                                    name: "ADMIN",
-                                    authority: "ADMIN"
-                                }]
-                            }
-                            if (roles.value === "2") {
-                                role = [{
-                                    id: 2,
-                                    name: "USER",
-                                    authority: "USER"
-                                }]
-                            }
+                            // let role;
+                            // if (roles.value === "1") {
+                            //     role = [{
+                            //         id: 1,
+                            //         name: "ADMIN",
+                            //         authority: "ADMIN"
+                            //     }]
+                            // }
+                            // if (roles.value === "2") {
+                            //     role = [{
+                            //         id: 2,
+                            //         name: "USER",
+                            //         authority: "USER"
+                            //     }]
+                            // }
 
                             let jsonobject =
                                 {
@@ -78,7 +78,7 @@ function renderPage() {
                                     email: email.value,
                                     password: password.value,
                                     country: country.value,
-                                    roles: role,
+                                    roles: roles.value,
                                 }
                             console.log(jsonobject);
                             try {

@@ -22,14 +22,14 @@
                 th:text="${role.name + ' '}"> roles </span></h5>
 
         <a href="/logout" style="color: darkgray">Logout</a>
-        <a href="/fetch">To Fetch</a>
+
     </nav>
 </div>
 
 <div class="container-xxl">
     <div class="row">
         <div class="col-sm-2" style="margin-top: 15px;padding:0;">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
                    aria-controls="v-pills-home" aria-selected="true">Admin</a>
                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
@@ -54,6 +54,7 @@
                             <h4>All users</h4>
                         </div>
                         <div class="tab-content">
+                            <!--таблица юзеров-->
                             <div class="tab-pane active in" id="home" role="tabpanel">
 
                                 <div class="card-block">
@@ -76,6 +77,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--таблица юзеров-->
                             <!--новый юзер начало ПЕРЕДЕЛАН РАБОТАЕТ-->
                             <div class="tab-pane" id="new" role="tabpanel">
                                 <div id="div1" style="margin-left: 30%; margin-right: 30%">
@@ -89,18 +91,19 @@
                                         <div class="form-group">
                                             <label class="col-form-label" for="age" style="display: block;
                                                                         text-align: center;"><b>Age</b> </label>
-                                            <input class="form-control" type="number" name="age" step="1" min="1" max="150" id="age"
+                                            <input class="form-control" type="number" name="age" step="1" min="1"
+                                                   max="150" id="age"
                                                    placeholder="Enter age"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-form-label" for="country" style="display: block;
-                                                                        text-align: center;"><b>Country</b>  </label>
+                                                                        text-align: center;"><b>Country</b> </label>
                                             <input class="form-control" type="text" name="country" id="country"
                                                    placeholder="Enter country"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-form-label" for="email" style="display: block;
-                                                                        text-align: center;"><b>Email</b>  </label>
+                                                                        text-align: center;"><b>Email</b> </label>
                                             <input class="form-control" type="text" name="email" id="email"
                                                    placeholder="Enter email"/>
                                         </div>
@@ -113,66 +116,203 @@
                                         <div class="form-group">
                                             <label class="col-form-label" for="roles" style="display: block;
                                                                         text-align: center;"><b>Roles</b> </label>
-                                            <select class="form-select form-control" aria-label="multiple select example" id="roles"
-                                                    name="roles" size="2" multiple="multiple" >
+                                            <select class="form-select form-control"
+                                                    aria-label="multiple select example" id="roles"
+                                                    name="roles" size="2" multiple="multiple">
                                                 <option value="1">ADMIN</option>
                                                 <option value="2">USER
                                                 </option>
                                             </select>
                                         </div>
-                                        <center><input type="submit" class="btn btn-success btn-lg" value="Add new user!"/></center>
+                                        <center><input type="submit" class="btn btn-success btn-lg"
+                                                       value="Add new user!"/></center>
                                     </form>
 
                                 </div>
                             </div>
                             <!--новый юзер конец-->
 
+                            <!-- model edit-->
+                            <div class="myForm">
+                                <form class="editUser">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
 
+                                                    <div class="form-group">
+                                                        <label for="id1" class="col-form-label">ID:</label>
+                                                        <input type="text" class="form-control" id="id1" name="id"
+                                                               value=""/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="name1" class="col-form-label">Name:</label>
+                                                        <input type="text" class="form-control" id="name1" name="name"
+                                                               value=""/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="age1" class="col-form-label">Age:</label>
+                                                        <input type="text" class="form-control" id="age1" name="age"
+                                                               value=""/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="country1" class="col-form-label">Country:</label>
+                                                        <input type="text" class="form-control" id="country1"
+                                                               name="country" value=""/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="email1" class="col-form-label">Email:</label>
+                                                        <input type="text" class="form-control" id="email1" name="email"
+                                                               value=""/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="password1" class="col-form-label">Password:</label>
+                                                        <input type="text" class="form-control" id="password1"
+                                                               name="password" value=""/>
+                                                    </div>
+                                                    <label for="roles1" class="col-form-label">Roles:</label>
+                                                    <select class="form-select form-control"
+                                                            aria-label="multiple select example" id="roles1"
+                                                            name="roles" size="2" multiple="multiple">
+                                                        <option value="1">ADMIN</option>
+                                                        <option value="2">USER</option>
+                                                    </select>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Закрыть
+                                                    </button>
+                                                    <input type="submit" class="btn btn-primary" value="save"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- model edit-->
+                        <!-- delete edit-->
+                        <div class="myForm">
+                            <form class="deleteUser">
+                                <div class="modal fade" id="exampleModalDelete" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalDeleteLabel">Edit</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                    <label for="id2" class="col-form-label">ID:</label>
+                                                    <input type="text" class="form-control" id="id2" name="id" value=""
+                                                           disabled/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name2" class="col-form-label">Name:</label>
+                                                    <input type="text" class="form-control" id="name2" name="name"
+                                                           value="" disabled/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="age2" class="col-form-label">Age:</label>
+                                                    <input type="text" class="form-control" id="age2" name="age"
+                                                           value="" disabled/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="country2" class="col-form-label">Country:</label>
+                                                    <input type="text" class="form-control" id="country2" name="country"
+                                                           value="" disabled/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email2" class="col-form-label">Email:</label>
+                                                    <input type="text" class="form-control" id="email2" name="email"
+                                                           value="" disabled/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password2" class="col-form-label">Password:</label>
+                                                    <input type="text" class="form-control" id="password2"
+                                                           name="password" value="" disabled/>
+                                                </div>
+                                                <label for="roles2" class="col-form-label">Roles:</label>
+                                                <select class="form-select form-control"
+                                                        aria-label="multiple select example" id="roles2"
+                                                        name="roles" size="2" multiple="multiple" disabled>
+                                                    <option value="1">ADMIN</option>
+                                                    <option value="2">USER</option>
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <input type="submit" class="btn btn-primary" value="delete"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    <!-- delete edit-->
+
                 </div>
-                <!--        НОВОЕ!!! Юзер как есть табличка-->
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
-                     style="margin-left: 2%; margin-right: 2%">
-                    <h1>User information-page</h1>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>About user</h4>
-                        </div>
-                        <table class="table table-striped">
-                            <tr id="topTable">
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Country</th>
-                                <th>Email</th>
-                                <th>Roles</th>
-                            </tr>
-                            <tr id="tableRemaining">
-                                <td th:utext=${user.getName()}>val</td>
-                                <td th:utext=${user.getAge()}>val</td>
-                                <td th:utext=${user.getCountry()}>val</td>
-                                <td th:utext=${user.getEmail()}>val</td>
-                                <td>
+
+            </div>
+            <!--        НОВОЕ!!! Юзер как есть табличка-->
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+                 style="margin-left: 2%; margin-right: 2%">
+                <h1>User information-page</h1>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>About user</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <tr id="topTable">
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Country</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                        </tr>
+                        <tr id="tableRemaining">
+                            <td th:utext=${user.getName()}>val</td>
+                            <td th:utext=${user.getAge()}>val</td>
+                            <td th:utext=${user.getCountry()}>val</td>
+                            <td th:utext=${user.getEmail()}>val</td>
+                            <td>
                                     <span th:each="role : ${user.roles}"
                                           th:value="${role.id}"
                                           th:text="${role.name + ' '}">role</span>
-                                </td>
+                            </td>
 
 
-                            </tr>
+                        </tr>
 
-                        </table>
+                    </table>
 
 
-                    </div>
                 </div>
-
-
             </div>
+
+
         </div>
     </div>
 </div>
+
 <script src="/main.js"></script>
+<script src="/modals.js"></script>
 <script src="/newUserJS.js"></script>
 </body>
 </html>
