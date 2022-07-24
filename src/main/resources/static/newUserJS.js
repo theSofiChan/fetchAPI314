@@ -7,22 +7,35 @@ form.addEventListener('submit', async (e) => {
     let email = document.querySelector('#email')
     let password = document.querySelector('#password');
     let country = document.querySelector('#country');
-    let roles = document.querySelector('#roles');
-    console.log(roles.value);
+    // let roles = document.querySelector('#roles');
+    let roles =$('#roles').val();
+    console.log(roles);
     let role;
-    if (roles.value === "1") {
+    if (roles[0] === "1" && roles.length == 1) {
         role = [{
             id: 1,
             name: "ADMIN",
             authority: "ADMIN"
         }]
     }
-    if (roles.value === "2") {
+    if (roles[0] === "2" && roles.length == 1) {
         role = [{
             id: 2,
             name: "USER",
             authority: "USER"
         }]
+    }if (roles.length == 2) {
+        role=[{
+            id: 1,
+            name: "ADMIN",
+            authority: "ADMIN"
+        },
+            {
+                id: 2,
+                name: "USER",
+                authority: "USER"
+            }
+        ]
     }
 
     let jsonobject =
@@ -43,6 +56,7 @@ form.addEventListener('submit', async (e) => {
             }
         });
         const json = await responce.json()
+   $('#myTab li:first-child a').tab('show');
         renderPage();
 
     } catch (e) {

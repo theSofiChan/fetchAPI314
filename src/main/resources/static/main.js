@@ -26,8 +26,10 @@ function renderPage() {
                         $(document).ready(function () {
                             $('.table .eBtn').on('click', function (event) {
                                 event.preventDefault();
+                                //ссылка на юезра, чтобы отправить на нее запрос
                                 let href = event.target.getAttribute('data-href')
                                 var text = $(this).text();
+                                //отправляем запрос jquery ссылка, на которую пойдет запрос
                                 $.get(href, function (user, status) {
                                     $('.myForm #id1').val(user.id);
                                     $('.myForm #name1').val(user.name);
