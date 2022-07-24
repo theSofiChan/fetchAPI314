@@ -13,17 +13,18 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/login").setViewName("login");
-            registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        }
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    }
 
     @Bean
     public GrantedAuthorityDefaults grantedAuthorityDefaults() {
         return new GrantedAuthorityDefaults("");
     }
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
 
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**");
+//    }
+
+}
 

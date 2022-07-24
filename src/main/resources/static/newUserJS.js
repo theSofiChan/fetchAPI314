@@ -7,9 +7,7 @@ form.addEventListener('submit', async (e) => {
     let email = document.querySelector('#email')
     let password = document.querySelector('#password');
     let country = document.querySelector('#country');
-    // let roles = document.querySelector('#roles');
     let roles =$('#roles').val();
-    console.log(roles);
     let role;
     if (roles[0] === "1" && roles.length == 1) {
         role = [{

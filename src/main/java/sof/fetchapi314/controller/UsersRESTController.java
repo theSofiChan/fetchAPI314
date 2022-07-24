@@ -19,12 +19,10 @@ import java.util.List;
 public class UsersRESTController {
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final UserRepository userRepo;
-    private final UserService userService;
 
     @Autowired
     public UsersRESTController(UserRepository userRepo, UserService userService) {
         this.userRepo = userRepo;
-        this.userService = userService;
     }
     @GetMapping("/admin/users/{id}")
     public User returnOne(@PathVariable Long id){
@@ -52,14 +50,14 @@ public class UsersRESTController {
     }
 
     @GetMapping("/admin/users")
-    public List<User> showAll(){
-        return userRepo.findAll();
+    public ResponseEntity<List<User>> showAll(){
+        return ResponseEntity.ok(userRepo.findAll());
     }
 
-    @GetMapping("/admin/roles")
-    public List<Role> allRoles(){
-       return userService.listRoles();
-    }
+//    @GetMapping("/admin/roles")
+//    public ResponseEntity<List<Role>> allRoles(){
+//       return ResponseEntity.ok(userService.listRoles());
+//    }
 
 
 }

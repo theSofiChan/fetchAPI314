@@ -3,10 +3,8 @@ function renderPage() {
         res => {
             res.json().then(
                 data => {
-                    console.log(data);
                     if (data.length > 0) {
                         var temp = "";
-                        //--start loop
                         data.forEach((u, index) => {
                             temp += "<tr>";
                             temp += "<td>" + u.id + "</td>";
@@ -26,10 +24,8 @@ function renderPage() {
                         $(document).ready(function () {
                             $('.table .eBtn').on('click', function (event) {
                                 event.preventDefault();
-                                //ссылка на юезра, чтобы отправить на нее запрос
                                 let href = event.target.getAttribute('data-href')
                                 var text = $(this).text();
-                                //отправляем запрос jquery ссылка, на которую пойдет запрос
                                 $.get(href, function (user, status) {
                                     $('.myForm #id1').val(user.id);
                                     $('.myForm #name1').val(user.name);
@@ -55,21 +51,33 @@ function renderPage() {
                             let email = document.querySelector('#email1')
                             let password = document.querySelector('#password1');
                             let country = document.querySelector('#country1');
-                            let roles = document.querySelector('#roles1');
+                            let roles =$('#roles1').val();
                             let role;
-                            if (roles.value === "1") {
+                            if (roles[0] === "1" && roles.length == 1) {
                                 role = [{
                                     id: 1,
                                     name: "ADMIN",
                                     authority: "ADMIN"
                                 }]
                             }
-                            if (roles.value === "2") {
+                            if (roles[0] === "2" && roles.length == 1) {
                                 role = [{
                                     id: 2,
                                     name: "USER",
                                     authority: "USER"
                                 }]
+                            }if (roles.length == 2) {
+                                role=[{
+                                    id: 1,
+                                    name: "ADMIN",
+                                    authority: "ADMIN"
+                                },
+                                    {
+                                        id: 2,
+                                        name: "USER",
+                                        authority: "USER"
+                                    }
+                                ]
                             }
 
                             let jsonobject =
@@ -80,9 +88,8 @@ function renderPage() {
                                     email: email.value,
                                     password: password.value,
                                     country: country.value,
-                                    roles: roles.value,
+                                    roles: role,
                                 }
-                            console.log(jsonobject);
                             try {
                                 const responce = await fetch(`http://localhost:8080/api/admin/users`, {
                                     method: 'PUT',
@@ -93,9 +100,7 @@ function renderPage() {
                                 });
                                 const json = await responce.json()
                                 renderPage();
-                                // setTimeout(()=>{},1500)
                                 $('#exampleModal').modal('hide');
-                                console.log(json)
 
                             } catch (e) {
                                 console.error(e)
@@ -132,8 +137,6 @@ function renderPage() {
                             let password = document.querySelector('#password2');
                             let country = document.querySelector('#country2');
                             let roles = document.querySelector('#roles2');
-                            console.log("ROLEX",roles)
-
 
                             let jsonobject =
                                 {
@@ -145,8 +148,6 @@ function renderPage() {
                                     country: country.value,
                                     roles: roles.value,
                                 }
-                            console.log("ROLEX",roles)
-                            console.log(jsonobject);
                             try {
                                 const responce = await fetch(`http://localhost:8080/api/admin/users/delete/${id.value}`, {
                                     method: 'DELETE',
@@ -158,7 +159,6 @@ function renderPage() {
                                 const json = await responce.json()
                                 renderPage();
                                 $('#exampleModalDelete').modal('hide');
-                                console.log(json)
 
                             } catch (e) {
                                 console.error(e)
