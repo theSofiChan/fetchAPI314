@@ -7,10 +7,8 @@
     <meta charset="UTF-8">
     <title>User</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 
 </head>
 <body>
@@ -160,7 +158,8 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="age1" class="col-form-label">Age:</label>
-                                                        <input type="text" class="form-control" id="age1" name="age"
+                                                        <input type="number" name="age" step="1" min="1"
+                                                               max="150" id="age1" class="form-control"
                                                                value=""/>
                                                     </div>
                                                     <div class="form-group">
@@ -175,7 +174,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="password1" class="col-form-label">Password:</label>
-                                                        <input type="text" class="form-control" id="password1"
+                                                        <input  class="form-control" id="password1" type="password"
                                                                name="password" value=""/>
                                                     </div>
                                                     <label for="roles1" class="col-form-label">Roles:</label>
@@ -188,7 +187,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Закрыть
+                                                            data-dismiss="modal">Close
                                                     </button>
                                                     <input type="submit" class="btn btn-primary" value="save"/>
                                                 </div>
@@ -227,7 +226,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="age2" class="col-form-label">Age:</label>
-                                                    <input type="text" class="form-control" id="age2" name="age"
+                                                    <input type="number" name="age" step="1" min="1"
+                                                           max="150" class="form-control" id="age2"
                                                            value="" disabled/>
                                                 </div>
                                                 <div class="form-group">
@@ -242,7 +242,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="password2" class="col-form-label">Password:</label>
-                                                    <input type="text" class="form-control" id="password2"
+                                                    <input  class="form-control" id="password2" type="password"
                                                            name="password" value="" disabled/>
                                                 </div>
                                                 <label for="roles2" class="col-form-label">Roles:</label>
@@ -310,9 +310,12 @@
         </div>
     </div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="/main.js"></script>
 <script src="/modals.js"></script>
 <script src="/newUserJS.js"></script>
 </body>
+
 </html>

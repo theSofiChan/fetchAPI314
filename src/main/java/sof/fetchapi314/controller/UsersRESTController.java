@@ -38,7 +38,7 @@ public class UsersRESTController {
         return ResponseEntity.ok(userRepo.save(user));
     }
 
-    @PutMapping("admin/users/save")
+    @PutMapping("admin/users")
     public ResponseEntity<User> update(@RequestBody User u){
         String password=passwordEncoder.encode(u.getPassword());
         u.setPassword(password);
