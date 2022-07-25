@@ -21,7 +21,7 @@ public class UsersRESTController {
     private final UserRepository userRepo;
 
     @Autowired
-    public UsersRESTController(UserRepository userRepo, UserService userService) {
+    public UsersRESTController(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
     @GetMapping("/admin/users/{id}")
