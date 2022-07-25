@@ -7,10 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import sof.fetchapi314.entity.Role;
 import sof.fetchapi314.entity.User;
 import sof.fetchapi314.repository.UserRepository;
-import sof.fetchapi314.service.UserService;
+
 
 import java.util.List;
 
@@ -43,9 +42,14 @@ public class UsersRESTController {
         return ResponseEntity.ok(userRepo.save(u));
     }
 
-    @DeleteMapping("/admin/users/delete/{id}")
+    @DeleteMapping("/admin/users/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         userRepo.deleteById(id);
+        boolean deleted=userRepo.existsById(id);
+        if (!deleted) {
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -54,10 +58,6 @@ public class UsersRESTController {
         return ResponseEntity.ok(userRepo.findAll());
     }
 
-//    @GetMapping("/admin/roles")
-//    public ResponseEntity<List<Role>> allRoles(){
-//       return ResponseEntity.ok(userService.listRoles());
-//    }
 
 
 }

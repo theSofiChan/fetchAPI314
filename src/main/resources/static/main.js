@@ -25,6 +25,7 @@ async function renderPage() {
                         renderEditModal();
                         renderDeleteModal();
 
+
                         document.getElementById("data").innerHTML = temp;
                     }
                 }
@@ -57,6 +58,7 @@ async function renderEditModal() {
 
         })
     });
+}
 
     let formEdit = document.querySelector('.editUser')
     formEdit.addEventListener('submit', async (e) => {
@@ -124,7 +126,7 @@ async function renderEditModal() {
             alert('there was an error')
         }
     })
-}
+
 async function renderDeleteModal(){
     $(document).ready(function () {
         $('.table .dBtn').on('click', function (event) {
@@ -144,20 +146,22 @@ async function renderDeleteModal(){
             $('.myForm #exampleModalDelete').modal();
 
         })
-    });
+    })
+}
+
     let formDelete = document.querySelector('.deleteUser')
     formDelete.addEventListener('submit', async (e) => {
         e.preventDefault();
         let id = document.querySelector('#id2');
 
         try {
-            const responce = await fetch(`http://localhost:8080/api/admin/users/delete/${id.value}`, {
+            const responce = await fetch('/api/admin/users/'+id.value, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 }
-            });
-            const json = await responce.json()
+            }).then(res => res.text())
+                .then(res => console.log(res))
 
             renderPage();
             $('#exampleModalDelete').modal('hide');
@@ -166,4 +170,3 @@ async function renderDeleteModal(){
             console.log("Something went wrong")
         }
     })
-}

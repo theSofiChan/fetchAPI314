@@ -21,10 +21,5 @@ public class MvcConfig implements WebMvcConfigurer {
         return new GrantedAuthorityDefaults("");
     }
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**");
-//    }
-
 }
 
