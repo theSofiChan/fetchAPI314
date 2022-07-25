@@ -22,8 +22,8 @@ async function renderPage() {
 
                         })
 
-                        renderModals();
-
+                        renderEditModal();
+                        renderDeleteModal();
 
                         document.getElementById("data").innerHTML = temp;
                     }
@@ -36,7 +36,7 @@ async function renderPage() {
 
 renderPage();
 
-async function renderModals() {
+async function renderEditModal() {
     $(document).ready(function () {
         $('.table .eBtn').on('click', function (event) {
             event.preventDefault();
@@ -124,11 +124,12 @@ async function renderModals() {
             alert('there was an error')
         }
     })
+}
+async function renderDeleteModal(){
     $(document).ready(function () {
         $('.table .dBtn').on('click', function (event) {
             event.preventDefault();
             let href = event.target.getAttribute('data-href')
-            var text = $(this).text();
             $.get(href, function (user, status) {
                 $('.myForm #id2').val(user.id);
                 $('.myForm #name2').val(user.name);
@@ -148,37 +149,21 @@ async function renderModals() {
     formDelete.addEventListener('submit', async (e) => {
         e.preventDefault();
         let id = document.querySelector('#id2');
-        let name = document.querySelector('#name2');
-        let age = document.querySelector('#age2');
-        let email = document.querySelector('#email2')
-        let password = document.querySelector('#password2');
-        let country = document.querySelector('#country2');
-        let roles = document.querySelector('#roles2');
-  //
-        let jsonobject =
-            {
-                id: +id.value,
-                name: name.value,
-                age: +age.value,
-                email: email.value,
-                password: password.value,
-                country: country.value,
-                roles: roles.value,
-            }
+
         try {
             const responce = await fetch(`http://localhost:8080/api/admin/users/delete/${id.value}`, {
                 method: 'DELETE',
-                body: JSON.stringify(jsonobject),
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
             const json = await responce.json()
+
             renderPage();
             $('#exampleModalDelete').modal('hide');
 
         } catch (e) {
-            console.error(e)
+            console.log("Something went wrong")
         }
     })
 }
