@@ -23,29 +23,30 @@ public class UsersRESTController {
     public UsersRESTController(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
+
     @GetMapping("/admin/users/{id}")
-    public User returnOne(@PathVariable Long id){
+    public User returnOne(@PathVariable Long id) {
         return userRepo.findById(id).orElse(null);
     }
 
     @PostMapping("admin/users/save")
-    public ResponseEntity<User> save(@RequestBody User user){
-        String password=passwordEncoder.encode(user.getPassword());
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
+        String password = passwordEncoder.encode(user.getPassword());
         user.setPassword(password);
         return ResponseEntity.ok(userRepo.save(user));
     }
 
     @PutMapping("admin/users")
-    public ResponseEntity<User> update(@RequestBody User u){
-        String password=passwordEncoder.encode(u.getPassword());
+    public ResponseEntity<User> updateUser(@RequestBody User u) {
+        String password = passwordEncoder.encode(u.getPassword());
         u.setPassword(password);
         return ResponseEntity.ok(userRepo.save(u));
     }
 
     @DeleteMapping("/admin/users/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userRepo.deleteById(id);
-        boolean deleted=userRepo.existsById(id);
+        boolean deleted = userRepo.existsById(id);
         if (!deleted) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
@@ -54,10 +55,9 @@ public class UsersRESTController {
     }
 
     @GetMapping("/admin/users")
-    public ResponseEntity<List<User>> showAll(){
+    public ResponseEntity<List<User>> showAllUsers() {
         return ResponseEntity.ok(userRepo.findAll());
     }
-
 
 
 }

@@ -21,7 +21,7 @@ async function renderPage() {
                                 + "</td></tr>";
 
                         })
-
+                        console.log('314')
                         renderEditModal();
                         renderDeleteModal();
 

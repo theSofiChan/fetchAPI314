@@ -1,7 +1,6 @@
 package sof.fetchapi314.service;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -54,17 +53,13 @@ public class UserService implements UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
-    public User get(Long id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id).get();
     }
 
-    public List<Role> listRoles() {
+    public List<Role> listRolesForAUser() {
         return roleRepository.findAll();
     }
 
-
-    public void update(User updatedUser) {
-        userRepository.save(updatedUser);
-    }
-    }
+}
 

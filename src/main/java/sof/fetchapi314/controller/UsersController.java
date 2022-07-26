@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sof.fetchapi314.entity.Role;
-import sof.fetchapi314.entity.User;
 import sof.fetchapi314.repository.UserRepository;
 import sof.fetchapi314.service.UserService;
 
@@ -31,22 +30,21 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String currentUserName(Authentication authentication, Model model) {
-        model.addAttribute("user", userService.get(userService.findByUserEmail(authentication.getName()).getId()));
+    @GetMapping("/user")
+    public String goToUserPage(Authentication authentication, Model model) {
+        model.addAttribute("user", userService.getUserById(userService.findByUserEmail(authentication.getName()).getId()));
         return "user";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String currentAdminName(Authentication authentication, Model model) {
-        model.addAttribute("user", userService.get(userService.findByUserEmail(authentication.getName()).getId()));
-        List<Role> listRoles = userService.listRoles();
+    @GetMapping("/admin")
+    public String goToAdminPage(Authentication authentication, Model model) {
+        model.addAttribute("user", userService.getUserById(userService.findByUserEmail(authentication.getName()).getId()));
+        List<Role> listRoles = userService.listRolesForAUser();
         model.addAttribute("users", userRepo.findAll());
         model.addAttribute("listRoles", listRoles);
         return "admin";
     }
-
 
 
 }
